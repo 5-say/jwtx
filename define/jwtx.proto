@@ -30,9 +30,8 @@ message MakeToken_Response {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 校验 token（基础校验、刷新 token）
 // - 请求
 message CheckToken_Request {
-  string group        = 1; // token 分组
-  string requestIP    = 2; // 发起请求的 IP 地址
-  string requestToken = 3; // 发起请求的 token
+  string requestIP    = 1; // 发起请求的 IP 地址
+  string requestToken = 2; // 发起请求的 token
 }
 // - 响应
 message CheckToken_Response {
@@ -47,10 +46,9 @@ message CheckToken_Response {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 移除 token（安全退出）
 // - 请求
 message DeleteToken_Request {
-  string group     = 1; // token 分组
-  uint64 tokenID   = 2; // token ID
-  uint64 accountID = 3; // 原始的账户 ID
-  string terminal  = 4; // 登出的终端名称
+  uint64 tokenID   = 1; // token ID
+  uint64 accountID = 2; // 原始的账户 ID
+  string terminal  = 3; // 登出的终端名称
 }
 // - 响应
 message DeleteToken_Response {}

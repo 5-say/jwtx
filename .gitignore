@@ -1,1 +1,3 @@
 define/db/mysql.sql
+private/jwtx/db/dao/*
+!private/jwtx/db/dao/dao.go
