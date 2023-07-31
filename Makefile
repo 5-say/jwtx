@@ -19,7 +19,7 @@ tidy:
 
 .PHONY:sql
 sql:
-	cd define/db && > mysql.sql && cat mysql/*.sql >> mysql.sql
+	cd define/jwtx/db && > mysql.sql && cat mysql/*.sql >> mysql.sql
 
 .PHONY:dao
 dao:
@@ -27,7 +27,7 @@ dao:
 
 .PHONY:rpc
 rpc:
-	goctl rpc protoc define/jwtx.proto --go_out=public --go-grpc_out=public --zrpc_out=private/jwtx/rpc --style goZero
+	goctl rpc protoc define/jwtx/jwtx.proto --go_out=public --go-grpc_out=public --zrpc_out=private/jwtx/rpc --style goZero
 
 .PHONY:rpc-run
 rpc-run:
