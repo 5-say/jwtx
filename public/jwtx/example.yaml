@@ -1,0 +1,77 @@
+Name: jwtx.rpc
+ListenOn: 0.0.0.0:9800
+Etcd:
+  Hosts:
+    - etcd:2379
+  Key: jwtx.rpc
+
+Log:
+  Encoding: plain
+  TimeFormat: "2006-01-02 15:04:05 MST -07"
+  Level: error
+
+DB:
+  Host: mysql
+  Port: 3306
+  Name: jwtx_service
+  User: root
+  Password: root
+  LogLevel: 4
+  SlowThreshold: 1
+
+SimpleRandom:
+  # 字典偏移，任意大于零的随机数
+  MapShifting: 87462
+  # 混淆偏移，任意大于零的随机数
+  ConfusionShifting: 52956
+  # 数值偏移，任意大于零的随机数
+  ValueShifting: 9364265
+
+# token 密钥，长度要求 8 位及以上
+TokenSecret: "h392yrjd392"
+
+JWTX:
+
+  "admin":
+    # 是否开启 IP一致性校验，当前 IP 必须与登录时 IP 一致
+    CheckIP: true
+    # 是否开启 单端登录
+    SingleEnd: true
+
+    # 刷新时间间隔（秒）
+    #
+    # 超过该时间即可触发 token 刷新、旧 token 进入容错，间隔越小安全性越高
+    RefreshInterval: 30
+    # 并发容错时间（秒）
+    FaultTolerance: 5
+
+    # 是否开启 自动续期
+    #
+    # 假设：单次登录有效期（7天）
+    # true  只要 7天 内有操作触发刷新，登录状态就一直延续
+    # false 不论 7天 内是否操作，7天 后必定要求重新登录
+    AutomaticRenewal: false
+    # 单次登录有效期（小时）
+    AccessExpireByHour: 8
+
+  "user":
+    # 是否开启 IP一致性校验，当前 IP 必须与登录时 IP 一致
+    CheckIP: true
+    # 是否开启 单端登录
+    SingleEnd: true
+
+    # 刷新时间间隔（秒）
+    #
+    # 超过该时间即可触发 token 刷新、旧 token 进入容错，间隔越小安全性越高
+    RefreshInterval: 60
+    # 并发容错时间（秒）
+    FaultTolerance: 5
+
+    # 是否开启 自动续期
+    #
+    # 假设：单次登录有效期（7天）
+    # true  只要 7天 内有操作触发刷新，登录状态就一直延续
+    # false 不论 7天 内是否操作，7天 后必定要求重新登录
+    AutomaticRenewal: true
+    # 单次登录有效期（小时）
+    AccessExpireByHour: 24
