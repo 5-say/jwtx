@@ -1,3 +1,4 @@
 define/db/mysql.sql
 private/jwtx/db/dao/*
 !private/jwtx/db/dao/dao.go
+public/jwtx/deploy/jwtx-rpc

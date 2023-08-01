@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.19.4
-// source: define/jwtx.proto
+// source: define/jwtx/jwtx.proto
 
 package jwtx
 
@@ -185,5 +185,5 @@ var Jwtx_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "define/jwtx.proto",
+	Metadata: "define/jwtx/jwtx.proto",
 }

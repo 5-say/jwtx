@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/5-say/zero-services/private/jwtx/common"
+	"github.com/5-say/zero-auth/private/jwtx/common"
 	"github.com/stretchr/testify/assert"
 )
 

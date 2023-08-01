@@ -65,10 +65,15 @@ func (l *CheckTokenLogic) CheckToken(in *jwtx.CheckToken_Request) (*jwtx.CheckTo
 		return nil, t.RPCErrorCode(err.Error(), "account has expired", codes.DeadlineExceeded)
 	}
 
+	// 分组校验
+	if token.LoginGroup != in.Group {
+		return nil, t.RPCError("group ["+in.Group+"] is not login group ["+token.LoginGroup+"]", "group fail")
+	}
+
 	// 获取配置
-	c, ok := l.svcCtx.Config.JWTX[token.LoginGroup]
+	c, ok := l.svcCtx.Config.JWTX[in.Group]
 	if !ok {
-		return nil, t.RPCError("group ["+token.LoginGroup+"] does not exist", "group fail")
+		return nil, t.RPCError("group ["+in.Group+"] config does not exist", "group fail")
 	}
 
 	// IP 一致性校验

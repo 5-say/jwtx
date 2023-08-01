@@ -37,7 +37,7 @@ func (l *MakeTokenLogic) MakeToken(in *jwtx.MakeToken_Request) (*jwtx.MakeToken_
 	// 获取配置
 	c, ok := l.svcCtx.Config.JWTX[in.Group]
 	if !ok {
-		return nil, t.RPCError("group ["+in.Group+"] does not exist", "group fail")
+		return nil, t.RPCError("group ["+in.Group+"] config does not exist", "group fail")
 	}
 
 	// 清除旧 token

@@ -39,10 +39,15 @@ func (l *DeleteTokenLogic) DeleteToken(in *jwtx.DeleteToken_Request) (*jwtx.Dele
 		return nil, t.RPCError(err.Error(), "token does not exist")
 	}
 
+	// 分组校验
+	if token.LoginGroup != in.Group {
+		return nil, t.RPCError("group ["+in.Group+"] is not login group ["+token.LoginGroup+"]", "group fail")
+	}
+
 	// 获取配置
-	c, ok := l.svcCtx.Config.JWTX[token.LoginGroup]
+	c, ok := l.svcCtx.Config.JWTX[in.Group]
 	if !ok {
-		return nil, t.RPCError("group ["+token.LoginGroup+"] does not exist", "group fail")
+		return nil, t.RPCError("group ["+in.Group+"] config does not exist", "group fail")
 	}
 
 	// 移除 token
